@@ -1,0 +1,33 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import Members from '../components/Members.astro';
+import Timeline from '../components/Timeline.astro';
+import Discography from '../components/Discography.astro';
+import MusicalStyle from '../components/MusicalStyle.astro';
+import Quotes from '../components/Quotes.astro';
+import Achievements from '../components/Achievements.astro';
+---
+
+<Layout>
+  <Hero />
+  <About />
+  <Members />
+  <Timeline />
+  <Discography />
+  <MusicalStyle />
+  <Quotes />
+  <Achievements />
+</Layout>
+
+<script>
+  import { initScrollReveals } from '../components/scrollReveal.js';
+
+  // Wait for DOM + GSAP ScrollTrigger's observer to be ready
+  if (document.readyState === 'complete') {
+    initScrollReveals();
+  } else {
+    window.addEventListener('load', initScrollReveals);
+  }
+</script>

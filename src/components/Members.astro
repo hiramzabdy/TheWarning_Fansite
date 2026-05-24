@@ -1,0 +1,35 @@
+---
+import members from '../data/members.json';
+---
+<section id="members" class="relative border-t border-white/5 bg-surface-light py-28">
+  <div class="mx-auto max-w-6xl px-6 text-center">
+    <span class="section-label section-label-anim">The Sisters</span>
+    <h2 class="section-label-anim mb-4 font-serif text-3xl leading-tight sm:text-4xl md:text-5xl">
+      Meet the <span class="text-crimson-500">Villarreal Vélez</span> Trio
+    </h2>
+    <p class="section-label-anim mx-auto mb-16 max-w-lg text-sm leading-relaxed text-text-secondary">
+      Three siblings who share blood, a stage, and an unbreakable musical chemistry.
+    </p>
+
+    <div class="reveal grid gap-8 md:grid-cols-3">
+      {members.map((m) => (
+        <div class="glass glass-hover rounded-2xl p-8 text-left">
+          <div
+            class="mb-4 flex h-14 w-14 items-center justify-center rounded-full text-xl font-black text-white"
+            style={{ background: m.color }}
+          >
+            {m.initial}
+          </div>
+          <h3 class="mb-1 text-xl font-semibold">
+            {m.name}
+            <span class="font-medium text-crimson-400">"{m.nickname}"</span>
+          </h3>
+          <p class="mb-4 text-xs font-semibold tracking-[0.08em] uppercase text-text-muted">
+            {m.role}
+          </p>
+          <p class="text-sm leading-relaxed text-text-secondary">{m.bio}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

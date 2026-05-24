@@ -1,0 +1,49 @@
+[
+  {
+    "title": "Keep Me Fed",
+    "year": 2024,
+    "label": "Lava / Republic Records",
+    "tag": "Latin GRAMMY Nominated",
+    "tracks": [
+      "Six Feet Deep", "S!CK", "Apologize", "Qué Más Quieres", "MORE",
+      "Escapism", "Satisfied", "Burnout", "Sharks", "Hell You Call A Dream",
+      "Consume", "Automatic Sun"
+    ],
+    "lengths": ["2:59","3:12","3:41","3:08","3:07","3:36","3:09","3:24","3:08","2:56","3:07","3:10"]
+  },
+  {
+    "title": "ERROR",
+    "year": 2022,
+    "label": "Lava / Republic Records",
+    "tag": "Loudwire Top 50 of 2022",
+    "tracks": [
+      "Intro 404", "DISCIPLE", "CHOKE", "ANIMOSITY", "MONEY", "AMOUR",
+      "EVOLVE", "ERROR", "Z", "23", "KOOL AID KIDS", "REVENANT", "MARTIRIO", "Breathe"
+    ],
+    "lengths": ["0:56","3:40","3:51","4:06","3:14","3:54","3:33","3:57","3:02","4:00","3:22","4:21","4:04","2:49"]
+  },
+  {
+    "title": "Queen of the Murder Scene",
+    "year": 2018,
+    "label": "Independent Release",
+    "tag": "Concept Album",
+    "tracks": [
+      "Dust to Dust", "Crimson Queen", "Ugh", "The One", "Stalker",
+      "Red Hands Never Fade", "The Sacrifice", "Sinister Smiles", "Dull Knives (Cut Better)",
+      "Queen of the Murder Scene", "P.S.Y.C.H.O.T.I.C.", "Hunter", "The End (Stars Always Seem to Fade)"
+    ],
+    "lengths": ["3:43","4:10","4:18","4:18","4:27","3:27","4:16","4:15","3:07","3:54","3:39","3:44","3:53"]
+  },
+  {
+    "title": "XXI Century Blood",
+    "year": 2017,
+    "label": "Independent Release",
+    "tag": null,
+    "tracks": [
+      "XXI Century Blood", "Shattered Heart", "When I'm Alone", "Wildfire",
+      "Black Holes (Don't Hold On)", "Survive", "Runaway", "Unmendable",
+      "Copper Bullets", "Show Me the Light"
+    ],
+    "lengths": ["3:57","4:10","3:29","3:32","5:02","5:08","3:59","3:35","3:41","4:29"]
+  }
+]

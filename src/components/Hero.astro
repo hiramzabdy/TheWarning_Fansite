@@ -1,0 +1,49 @@
+<header class="relative flex min-h-screen items-center justify-center overflow-hidden">
+  <!-- Three.js canvas container -->
+  <div id="hero-canvas" class="absolute inset-0 z-0"></div>
+
+  <!-- Mesh gradient fallback -->
+  <div class="mesh-gradient z-[1]"></div>
+
+  <!-- Content -->
+  <div class="relative z-10 mx-auto max-w-4xl px-6 text-center">
+    <p class="mb-4 inline-block rounded-full border border-crimson-500/40 px-6 py-2 text-xs font-semibold tracking-[0.12em] uppercase text-crimson-400">
+      Mexican Rock Power Trio
+    </p>
+    <h1 class="hero-glow mb-6 font-serif text-5xl leading-tight sm:text-6xl md:text-7xl lg:text-8xl">
+      Three Sisters.<br />
+      <span class="text-crimson-500">One Warning</span>.
+    </h1>
+    <p class="mb-2 text-sm font-semibold tracking-[0.2em] uppercase text-text-secondary">
+      Monterrey, Mexico — Since 2013
+    </p>
+    <p class="mx-auto max-w-xl text-sm leading-relaxed text-text-muted">
+      Daniela, Paulina &amp; Alejandra Villarreal Vélez — the sister trio that
+      turned a Metallica cover into a global rock movement.
+    </p>
+  </div>
+
+  <!-- Scroll hint -->
+  <div class="absolute bottom-10 left-1/2 z-10 -translate-x-1/2 flex flex-col items-center gap-1 uppercase tracking-[0.15em] text-text-muted transition-opacity duration-500 hover:opacity-60">
+    <span class="animate-bounce text-xs">↓</span>
+    <span class="text-[0.6rem] font-semibold">Scroll</span>
+  </div>
+</header>
+
+<script>
+  import { initHeroScene } from './threeBackground.js';
+  const container = document.getElementById('hero-canvas');
+  if (container) {
+    const cleanup = initHeroScene(container);
+  }
+</script>
+
+<style>
+  .animate-bounce {
+    animation: bounce 2s infinite;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
+  }
+</style>

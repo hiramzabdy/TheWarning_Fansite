@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Warning — Official Fan Archive</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Prata&display=swap" rel="stylesheet">
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0a0a0a;
+      color: #e8e0d8;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ===== TYPOGRAPHY ===== */
+    h1, h2, h3, h4 { font-weight: 700; line-height: 1.2; }
+    h1 { font-size: clamp(2.5rem, 6vw, 5rem); letter-spacing: -0.02em; }
+    h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      letter-spacing: -0.01em;
+      margin-bottom: 1rem;
+    }
+    h2 .accent { color: #c62828; }
+    h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
+    p { margin-bottom: 1.2rem; max-width: 68ch; }
+    a { color: #ef5350; text-decoration: none; transition: color .2s; }
+    a:hover { color: #ff8a80; }
+    .serif { font-family: 'Prata', Georgia, serif; }
+
+    /* ===== UTILITY ===== */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 100px 0; }
+    .section-dark { background: #0f0f0f; }
+    .section-darker { background: #080808; }
+    .section-divider {
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #c62828, transparent);
+      opacity: 0.3;
+    }
+    .label {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #ef5350;
+      margin-bottom: 0.5rem;
+    }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+    .text-center { text-align: center; }
+
+    /* ===== NAVBAR ===== */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 0 24px;
+    }
+    nav .container {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    nav .logo {
+      font-weight: 900; font-size: 1.1rem; letter-spacing: 0.05em;
+      text-transform: uppercase; color: #e8e0d8;
+    }
+    nav .logo span { color: #c62828; }
+    nav ul { display: flex; list-style: none; gap: 28px; }
+    nav ul a {
+      font-size: 0.85rem; font-weight: 500; color: #999;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      transition: color .2s;
+    }
+    nav ul a:hover { color: #e8e0d8; }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 40%, rgba(198,40,40,0.15) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 50% at 80% 80%, rgba(100,20,20,0.08) 0%, transparent 60%),
+        #0a0a0a;
+    }
+    .hero-bg-text {
+      position: absolute;
+      font-size: clamp(8rem, 20vw, 18rem);
+      font-weight: 900;
+      color: rgba(255,255,255,0.02);
+      top: 50%; left: 50%; transform: translate(-50%,-50%);
+      pointer-events: none;
+      white-space: nowrap;
+      letter-spacing: 0.05em;
+      user-select: none;
+    }
+    .hero-content { position: relative; z-index: 1; }
+    .hero h1 { font-family: 'Prata', Georgia, serif; font-weight: 400; }
+    .hero h1 .highlight { color: #c62828; }
+    .hero .subtitle {
+      font-size: clamp(1rem, 1.8vw, 1.3rem);
+      color: #999;
+      margin: 1.5rem 0 2.5rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .hero .hero-tag {
+      display: inline-block;
+      padding: 8px 24px;
+      border: 1px solid rgba(198,40,40,0.4);
+      border-radius: 100px;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      color: #ef5350;
+      margin-bottom: 1rem;
+    }
+    .scroll-hint {
+      position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      color: #666; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+      animation: bounce 2s infinite;
+    }
+    .scroll-hint .arrow { font-size: 1.2rem; }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ===== ABOUT ===== */
+    .about-intro {
+      font-size: 1.2rem; color: #bbb;
+      max-width: 800px; margin: 0 auto 3rem;
+      text-align: center;
+    }
+
+    /* ===== MEMBERS ===== */
+    .member-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.04) 0%, transparent 100%);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      padding: 36px 28px;
+      transition: transform .3s, border-color .3s;
+    }
+    .member-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(198,40,40,0.3);
+    }
+    .member-card .initial {
+      width: 56px; height: 56px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; font-weight: 900;
+      margin-bottom: 16px;
+    }
+    .member-card:nth-child(1) .initial { background: #c62828; color: #fff; }
+    .member-card:nth-child(2) .initial { background: #b71c1c; color: #fff; }
+    .member-card:nth-child(3) .initial { background: #8e0000; color: #fff; }
+    .member-card .nickname {
+      color: #ef5350; font-size: 0.9rem; font-weight: 600;
+    }
+    .member-card p { font-size: 0.9rem; color: #aaa; margin-bottom: 0; }
+
+    /* ===== TIMELINE ===== */
+    .timeline { position: relative; padding-left: 40px; max-width: 800px; margin: 0 auto; }
+    .timeline::before {
+      content: ''; position: absolute; left: 15px; top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, #c62828, transparent);
+    }
+    .timeline-item {
+      position: relative; margin-bottom: 48px;
+      animation: fadeInUp .6s ease both;
+    }
+    .timeline-item:last-child { margin-bottom: 0; }
+    .timeline-dot {
+      position: absolute; left: -32px; top: 6px;
+      width: 14px; height: 14px; border-radius: 50%;
+      background: #c62828; border: 3px solid #0a0a0a;
+      box-shadow: 0 0 0 2px #c62828;
+    }
+    .timeline-year {
+      font-size: 0.8rem; font-weight: 700; color: #ef5350;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .timeline-title {
+      font-size: 1.2rem; font-weight: 600; margin-bottom: 4px;
+    }
+    .timeline-desc { font-size: 0.9rem; color: #999; max-width: none; }
+
+    /* ===== DISCOGRAPHY ===== */
+    .album-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, transparent 100%);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform .3s, border-color .3s;
+    }
+    .album-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(198,40,40,0.3);
+    }
+    .album-header {
+      padding: 32px 28px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .album-header .year {
+      font-size: 0.75rem; font-weight: 600; color: #ef5350;
+      letter-spacing: 0.1em; text-transform: uppercase;
+    }
+    .album-header h3 { font-size: 1.4rem; margin: 4px 0; }
+    .album-header .meta {
+      font-size: 0.85rem; color: #777;
+      letter-spacing: 0.03em;
+    }
+    .album-header .label-tag {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      background: rgba(198,40,40,0.15);
+      color: #ef5350;
+      margin-top: 8px;
+    }
+    .album-tracklist { padding: 16px 28px 28px; }
+    .album-tracklist li {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 8px 0;
+      font-size: 0.9rem;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      list-style: none;
+    }
+    .album-tracklist li:last-child { border-bottom: none; }
+    .album-tracklist .track-num {
+      color: #555; font-weight: 600; margin-right: 12px; min-width: 28px;
+    }
+    .album-tracklist .track-title { flex: 1; }
+    .album-tracklist .track-len { color: #555; font-size: 0.8rem; }
+
+    /* ===== QUOTES ===== */
+    .quote-card {
+      max-width: 750px; margin: 0 auto 40px;
+      text-align: center;
+      padding: 40px;
+      border-left: 3px solid #c62828;
+      background: rgba(255,255,255,0.02);
+      border-radius: 0 16px 16px 0;
+    }
+    .quote-card blockquote {
+      font-size: 1.25rem; font-style: italic; color: #ccc;
+      line-height: 1.6;
+    }
+    .quote-card cite {
+      display: block; margin-top: 16px;
+      font-size: 0.85rem; font-style: normal; color: #777;
+    }
+
+    /* ===== ACHIEVEMENTS ===== */
+    .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; }
+    .stat-card {
+      text-align: center;
+      padding: 40px 20px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      transition: border-color .3s;
+    }
+    .stat-card:hover { border-color: rgba(198,40,40,0.3); }
+    .stat-number {
+      font-size: 2.5rem; font-weight: 900; color: #ef5350;
+      line-height: 1;
+    }
+    .stat-label { font-size: 0.85rem; color: #888; margin-top: 8px; text-transform: uppercase; letter-spacing: 0.05em; }
+
+    /* ===== EXTERNAL LINKS ===== */
+    .links-grid {
+      display: flex; flex-wrap: wrap; gap: 16px; justify-content: center;
+    }
+    .link-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 32px;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 100px;
+      font-size: 0.9rem; font-weight: 500;
+      color: #e8e0d8;
+      transition: all .25s;
+    }
+    .link-btn:hover {
+      background: rgba(198,40,40,0.15);
+      border-color: rgba(198,40,40,0.4);
+      color: #fff;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 40px 0;
+      text-align: center;
+    }
+    footer p { font-size: 0.85rem; color: #555; margin: 0 auto; max-width: none; }
+    footer .footer-heart { color: #c62828; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .grid-2 { grid-template-columns: 1fr; gap: 40px; }
+      .grid-3 { grid-template-columns: 1fr; gap: 24px; }
+      nav ul { display: none; }
+      .section { padding: 60px 0; }
+    }
+    @media (max-width: 600px) {
+      .container { padding: 0 16px; }
+      .album-header, .album-tracklist { padding-left: 20px; padding-right: 20px; }
+      .timeline { padding-left: 28px; }
+      .quote-card { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav>
+    <div class="container">
+      <div class="logo"><span>⚠</span> THE WARNING</div>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#members">Members</a></li>
+        <li><a href="#timeline">Timeline</a></li>
+        <li><a href="#discography">Discography</a></li>
+        <li><a href="#quotes">Quotes</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="top">
+    <div class="hero-bg-text">THE WARNING</div>
+    <div class="hero-content container">
+      <div class="hero-tag">Mexican Rock Power Trio</div>
+      <h1>
+        Three Sisters.<br>
+        One <span class="highlight">Warning</span>.
+      </h1>
+      <p class="subtitle">Monterrey, Mexico — Since 2013</p>
+      <p style="color:#888; max-width:600px; margin:0 auto; font-size:0.9rem;">
+        Daniela, Paulina &amp; Alejandra Villarreal Vélez — the sister trio that
+        turned a Metallica cover into a global rock movement.
+      </p>
+    </div>
+    <div class="scroll-hint">
+      <span>Scroll</span>
+      <span class="arrow">↓</span>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section class="section" id="about">
+    <div class="container">
+      <span class="label">About</span>
+      <h2>From <span class="accent">Monterrey</span> to the World</h2>
+      <p class="about-intro">
+        The Warning is a Mexican hard rock band formed in 2013 in Monterrey, Nuevo León,
+        by the Villarreal Vélez sisters. What started as a childhood passion fueled by
+        the video game <em>Rock Band</em> grew into a global touring act with millions of
+        fans across the world.
+      </p>
+      <div class="grid-2" style="margin-top:40px;">
+        <div>
+          <h3>The Beginning</h3>
+          <p>
+            The sisters all received classical piano training from a young age. After
+            years playing <em>Rock Band</em> at home, Daniela chose guitar, Paulina chose
+            drums, and seven-year-old Alejandra picked up the bass. In 2013, the power trio
+            was born.
+          </p>
+          <p>
+            In 2014, their YouTube cover of Metallica's "Enter Sandman" went viral,
+            amassing over 26 million views. Metallica guitarist Kirk Hammett himself
+            praised Paulina: <em>"The drummer kicks maximum ass!"</em>
+          </p>
+        </div>
+        <div>
+          <h3>The Rise</h3>
+          <p>
+            After appearing on <em>The Ellen DeGeneres Show</em> in 2015 and earning
+            scholarships to Berklee College of Music, the band built a fiercely loyal
+            fanbase. They signed with Lava / Republic Records in 2020 and have since
+            released four studio albums, toured with Muse, Foo Fighters, and Guns N' Roses,
+            and earned a Latin Grammy nomination.
+          </p>
+          <p>
+            In 2025, the band sold out three nights at Mexico City's 10,000-capacity
+            Auditorio Nacional — a milestone that led to their first concert film,
+            <em>Live from Auditorio Nacional, CDMX</em>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ===== MEMBERS ===== -->
+  <section class="section section-dark" id="members">
+    <div class="container text-center">
+      <span class="label">The Sisters</span>
+      <h2>Meet the <span class="accent">Villarreal Vélez</span> Trio</h2>
+      <p style="color:#888; max-width:600px; margin:0 auto 48px;">
+        Three siblings who share blood, a stage, and an unbreakable musical chemistry.
+      </p>
+      <div class="grid-3">
+        <div class="member-card">
+          <div class="initial">D</div>
+          <h3>Daniela <span class="nickname">"Dany"</span></h3>
+          <p>Lead Vocals · Guitar · Piano</p>
+          <p style="margin-top:12px;font-size:0.85rem;">
+            The eldest sister and frontwoman. Her guitar style is heavily inspired by
+            Matt Bellamy of Muse. She writes much of the band's lyrics and commands
+            the stage with fiery energy.
+          </p>
+        </div>
+        <div class="member-card">
+          <div class="initial">P</div>
+          <h3>Paulina <span class="nickname">"Pau"</span></h3>
+          <p>Drums · Vocals · Piano</p>
+          <p style="margin-top:12px;font-size:0.85rem;">
+            The powerhouse behind the kit. Profiled in <em>Tom Tom Magazine</em> at age 12.
+            She's the band's creative director, co-lead vocalist, and a force of nature
+            — both behind the drums and on the mic.
+          </p>
+        </div>
+        <div class="member-card">
+          <div class="initial">A</div>
+          <h3>Alejandra <span class="nickname">"Ale"</span></h3>
+          <p>Bass · Backing Vocals · Piano</p>
+          <p style="margin-top:12px;font-size:0.85rem;">
+            The youngest sister anchors the rhythm section with a deep, melodic bass
+            style. She also provides ethereal backing harmonies that round out the
+            band's vocal texture.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ===== TIMELINE ===== -->
+  <section class="section section-darker" id="timeline">
+    <div class="container">
+      <span class="label">History</span>
+      <h2>Timeline of a <span class="accent">Rising Force</span></h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">2013</div>
+          <div class="timeline-title">The Band Forms</div>
+          <p class="timeline-desc">
+            The Villarreal Vélez sisters form a power trio in Monterrey, Mexico.
+            Daniela (guitar), Paulina (drums), and Alejandra (bass) begin posting
+            covers on YouTube.
+          </p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">2014</div>
+          <div class="timeline-title">"Enter Sandman" Goes Viral</div>
+          <p class="timeline-desc">
+            Their cover of Metallica's "Enter Sandman" explodes on YouTube, reaching
+            over 26 million views. Kirk Hammett calls Paulina's drumming
+            "maximum ass." Paulina is profiled in <em>Tom Tom Magazine</em>.
+          </p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">2015</div>
+          <div class="timeline-title">Ellen &amp; Berklee</div>
+          <p class="timeline-desc">
+            The band appears on <em>The Ellen DeGeneres Show</em>. With donations from
+            Ellen and Target, the sisters attend a five-week program at Berklee College
+            of Music. They release debut EP <em>Escape the Mind</em>.
+          </p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">2017</div>
+          <div class="timeline-title">XXI Century Blood</div>
+          <p class="timeline-desc">
+            First full-length studio album released. The title track's music video
+            wins awards at film festivals. The band opens for The Killers in Monterrey.
+          </p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">2018</div>
+          <div class="timeline-title">Queen of the Murder Scene</div>
+          <p class="timeline-desc">
+            Second album — a 13-track concept album about obsession, duality, and
+            madness. The band performs at Rock al Parque, Latin America's biggest
+            rock festival.
+          </p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">2020</div>
+          <div class="timeline-title">Signed with Lava Records</div>
+          <p class="timeline-desc">
+            The Warning signs a multi-album deal with Lava / Republic Records.
+            They begin working on their major-label debut with producer David Bendeth.
+          </p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">2022</div>
+          <div class="timeline-title">ERROR</div>
+          <p class="timeline-desc">
+            Third studio album <em>Error</em> released. Touring with Halestorm, The Pretty
+            Reckless, Three Days Grace, and opening for Guns N' Roses in Monterrey.
+            Single "Money" hits Billboard Mainstream Rock chart.
+          </p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">2023</div>
+          <div class="timeline-title">Muse Tour &amp; 10th Anniversary</div>
+          <p class="timeline-desc">
+            Supports Muse on the Will of the People tour across Mexico and Europe —
+            the band's first visit to Europe. Performs at the MTV Video Music Awards.
+            Celebrates 10-year anniversary at the Pepsi Center, CDMX.
+          </p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">2024</div>
+          <div class="timeline-title">Keep Me Fed &amp; Latin Grammy Nomination</div>
+          <p class="timeline-desc">
+            Fourth album <em>Keep Me Fed</em> drops June 28. The single "S!CK" hits #8
+            on Billboard Mainstream Rock. "Qué Más Quieres" earns a Latin Grammy
+            nomination for Best Rock Song. European headline tour sells out all 19 stops.
+            Performs at MTV Europe Music Awards.
+          </p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">2025</div>
+          <div class="timeline-title">Auditorio Nacional &amp; Concert Film</div>
+          <p class="timeline-desc">
+            Sells out three nights at 10,000-capacity Auditorio Nacional in Mexico City.
+            Releases first concert film <em>Live from Auditorio Nacional, CDMX</em>.
+            Tours South America, Europe, and the US. Performs with Billy Idol at
+            CBS's Grammy Celebration of Latin Music.
+          </p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">2026</div>
+          <div class="timeline-title">New Music &amp; Yungblud Tour</div>
+          <p class="timeline-desc">
+            New singles "Kerosene" and "Ego" drop. Set to support Yungblud on a
+            major UK and North American arena tour in spring/summer.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ===== DISCOGRAPHY ===== -->
+  <section class="section section-dark" id="discography">
+    <div class="container">
+      <span class="label">Discography</span>
+      <h2>Four Albums of <span class="accent">Evolution</span></h2>
+      <p style="color:#888; max-width:600px; margin:0 0 48px;">
+        From independent releases to major-label rock anthems, every album marks a new chapter.
+      </p>
+
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 32px;">
+
+        <!-- Keep Me Fed (2024) -->
+        <div class="album-card">
+          <div class="album-header">
+            <span class="year">2024</span>
+            <h3>Keep Me Fed</h3>
+            <span class="meta">Lava / Republic Records</span>
+            <div class="label-tag">Latin GRAMMY Nominated</div>
+          </div>
+          <ol class="album-tracklist">
+            <li><span class="track-num">1.</span><span class="track-title">Six Feet Deep</span><span class="track-len">2:59</span></li>
+            <li><span class="track-num">2.</span><span class="track-title">S!CK</span><span class="track-len">3:12</span></li>
+            <li><span class="track-num">3.</span><span class="track-title">Apologize</span><span class="track-len">3:41</span></li>
+            <li><span class="track-num">4.</span><span class="track-title">Qué Más Quieres</span><span class="track-len">3:08</span></li>
+            <li><span class="track-num">5.</span><span class="track-title">MORE</span><span class="track-len">3:07</span></li>
+            <li><span class="track-num">6.</span><span class="track-title">Escapism</span><span class="track-len">3:36</span></li>
+            <li><span class="track-num">7.</span><span class="track-title">Satisfied</span><span class="track-len">3:09</span></li>
+            <li><span class="track-num">8.</span><span class="track-title">Burnout</span><span class="track-len">3:24</span></li>
+            <li><span class="track-num">9.</span><span class="track-title">Sharks</span><span class="track-len">3:08</span></li>
+            <li><span class="track-num">10.</span><span class="track-title">Hell You Call A Dream</span><span class="track-len">2:56</span></li>
+            <li><span class="track-num">11.</span><span class="track-title">Consume</span><span class="track-len">3:07</span></li>
+            <li><span class="track-num">12.</span><span class="track-title">Automatic Sun</span><span class="track-len">3:10</span></li>
+          </ol>
+        </div>
+
+        <!-- ERROR (2022) -->
+        <div class="album-card">
+          <div class="album-header">
+            <span class="year">2022</span>
+            <h3>ERROR</h3>
+            <span class="meta">Lava / Republic Records</span>
+            <div class="label-tag">Loudwire Top 50 of 2022</div>
+          </div>
+          <ol class="album-tracklist">
+            <li><span class="track-num">1.</span><span class="track-title">Intro 404</span><span class="track-len">0:56</span></li>
+            <li><span class="track-num">2.</span><span class="track-title">DISCIPLE</span><span class="track-len">3:40</span></li>
+            <li><span class="track-num">3.</span><span class="track-title">CHOKE</span><span class="track-len">3:51</span></li>
+            <li><span class="track-num">4.</span><span class="track-title">ANIMOSITY</span><span class="track-len">4:06</span></li>
+            <li><span class="track-num">5.</span><span class="track-title">MONEY</span><span class="track-len">3:14</span></li>
+            <li><span class="track-num">6.</span><span class="track-title">AMOUR</span><span class="track-len">3:54</span></li>
+            <li><span class="track-num">7.</span><span class="track-title">EVOLVE</span><span class="track-len">3:33</span></li>
+            <li><span class="track-num">8.</span><span class="track-title">ERROR</span><span class="track-len">3:57</span></li>
+            <li><span class="track-num">9.</span><span class="track-title">Z</span><span class="track-len">3:02</span></li>
+            <li><span class="track-num">10.</span><span class="track-title">23</span><span class="track-len">4:00</span></li>
+            <li><span class="track-num">11.</span><span class="track-title">KOOL AID KIDS</span><span class="track-len">3:22</span></li>
+            <li><span class="track-num">12.</span><span class="track-title">REVENANT</span><span class="track-len">4:21</span></li>
+            <li><span class="track-num">13.</span><span class="track-title">MARTIRIO</span><span class="track-len">4:04</span></li>
+            <li><span class="track-num">14.</span><span class="track-title">Breathe</span><span class="track-len">2:49</span></li>
+          </ol>
+        </div>
+
+        <!-- Queen of the Murder Scene (2018) -->
+        <div class="album-card">
+          <div class="album-header">
+            <span class="year">2018</span>
+            <h3>Queen of the Murder Scene</h3>
+            <span class="meta">Independent Release</span>
+            <div class="label-tag">Concept Album</div>
+          </div>
+          <ol class="album-tracklist">
+            <li><span class="track-num">1.</span><span class="track-title">Dust to Dust</span><span class="track-len">3:43</span></li>
+            <li><span class="track-num">2.</span><span class="track-title">Crimson Queen</span><span class="track-len">4:10</span></li>
+            <li><span class="track-num">3.</span><span class="track-title">Ugh</span><span class="track-len">4:18</span></li>
+            <li><span class="track-num">4.</span><span class="track-title">The One</span><span class="track-len">4:18</span></li>
+            <li><span class="track-num">5.</span><span class="track-title">Stalker</span><span class="track-len">4:27</span></li>
+            <li><span class="track-num">6.</span><span class="track-title">Red Hands Never Fade</span><span class="track-len">3:27</span></li>
+            <li><span class="track-num">7.</span><span class="track-title">The Sacrifice</span><span class="track-len">4:16</span></li>
+            <li><span class="track-num">8.</span><span class="track-title">Sinister Smiles</span><span class="track-len">4:15</span></li>
+            <li><span class="track-num">9.</span><span class="track-title">Dull Knives (Cut Better)</span><span class="track-len">3:07</span></li>
+            <li><span class="track-num">10.</span><span class="track-title">Queen of the Murder Scene</span><span class="track-len">3:54</span></li>
+            <li><span class="track-num">11.</span><span class="track-title">P.S.Y.C.H.O.T.I.C.</span><span class="track-len">3:39</span></li>
+            <li><span class="track-num">12.</span><span class="track-title">Hunter</span><span class="track-len">3:44</span></li>
+            <li><span class="track-num">13.</span><span class="track-title">The End (Stars Always Seem to Fade)</span><span class="track-len">3:53</span></li>
+          </ol>
+        </div>
+
+        <!-- XXI Century Blood (2017) -->
+        <div class="album-card">
+          <div class="album-header">
+            <span class="year">2017</span>
+            <h3>XXI Century Blood</h3>
+            <span class="meta">Independent Release</span>
+          </div>
+          <ol class="album-tracklist">
+            <li><span class="track-num">1.</span><span class="track-title">XXI Century Blood</span><span class="track-len">3:57</span></li>
+            <li><span class="track-num">2.</span><span class="track-title">Shattered Heart</span><span class="track-len">4:10</span></li>
+            <li><span class="track-num">3.</span><span class="track-title">When I'm Alone</span><span class="track-len">3:29</span></li>
+            <li><span class="track-num">4.</span><span class="track-title">Wildfire</span><span class="track-len">3:32</span></li>
+            <li><span class="track-num">5.</span><span class="track-title">Black Holes (Don't Hold On)</span><span class="track-len">5:02</span></li>
+            <li><span class="track-num">6.</span><span class="track-title">Survive</span><span class="track-len">5:08</span></li>
+            <li><span class="track-num">7.</span><span class="track-title">Runaway</span><span class="track-len">3:59</span></li>
+            <li><span class="track-num">8.</span><span class="track-title">Unmendable</span><span class="track-len">3:35</span></li>
+            <li><span class="track-num">9.</span><span class="track-title">Copper Bullets</span><span class="track-len">3:41</span></li>
+            <li><span class="track-num">10.</span><span class="track-title">Show Me the Light</span><span class="track-len">4:29</span></li>
+          </ol>
+        </div>
+
+      </div>
+
+      <!-- EPs row -->
+      <div style="margin-top:48px;">
+        <h3 style="font-size:1.1rem; color:#999; text-align:center; margin-bottom:24px;">Extended Plays</h3>
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px;">
+          <div class="album-card" style="text-align:center;">
+            <div class="album-header">
+              <span class="year">2015</span>
+              <h3 style="font-size:1.1rem;">Escape the Mind</h3>
+              <span class="meta">6-track EP · Independent</span>
+            </div>
+          </div>
+          <div class="album-card" style="text-align:center;">
+            <div class="album-header">
+              <span class="year">2021</span>
+              <h3 style="font-size:1.1rem;">Mayday</h3>
+              <span class="meta">6-track EP · Lava / Republic</span>
+            </div>
+          </div>
+          <div class="album-card" style="text-align:center;">
+            <div class="album-header">
+              <span class="year">2025</span>
+              <h3 style="font-size:1.1rem;">Live from Auditorio Nacional</h3>
+              <span class="meta">Live Album &amp; Concert Film</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ===== MUSICAL STYLE ===== -->
+  <section class="section" id="style">
+    <div class="container text-center">
+      <span class="label">Sound</span>
+      <h2>Hard Rock with <span class="accent">Soul</span></h2>
+      <p style="color:#aaa; max-width:680px; margin:0 auto 40px;">
+        The Warning's sound has been described as hard rock, alternative metal, post-grunge, 
+        and alternative rock — a fusion of heavy riffs, melodic hooks, and classically-trained
+        musicianship. Their songs weave together English and Spanish lyrics, reflecting their
+        Mexican heritage and global ambition.
+      </p>
+      <div class="grid-3" style="margin-top:20px;">
+        <div style="padding:24px;">
+          <div style="font-size:2rem; margin-bottom:12px;">🎸</div>
+          <h3>Influences</h3>
+          <p style="font-size:0.85rem; color:#999;">
+            Metallica, Muse, My Chemical Romance, Pink Floyd, Queen, Paramore,
+            Badflower, and a wide range from classical to K-pop and J-rock.
+          </p>
+        </div>
+        <div style="padding:24px;">
+          <div style="font-size:2rem; margin-bottom:12px;">🎤</div>
+          <h3>Heroes</h3>
+          <p style="font-size:0.85rem; color:#999;">
+            Hayley Williams (Paramore), Esperanza Spalding, Sheila E., Lzzy Hale
+            (Halestorm) — female artists who've inspired the sisters.
+          </p>
+        </div>
+        <div style="padding:24px;">
+          <div style="font-size:2rem; margin-bottom:12px;">🎹</div>
+          <h3>Training</h3>
+          <p style="font-size:0.85rem; color:#999;">
+            All three sisters trained classically on piano from early childhood,
+            giving their music a sophisticated harmonic foundation beneath the
+            hard rock exterior.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ===== QUOTES ===== -->
+  <section class="section section-darker" id="quotes">
+    <div class="container">
+      <span class="label">In Their Words</span>
+      <h2 class="text-center">What People <span class="accent">Say</span></h2>
+
+      <div class="quote-card">
+        <blockquote>"The drummer kicks maximum ass!"</blockquote>
+        <cite>— Kirk Hammett, Metallica, on Paulina's drumming (2014)</cite>
+      </div>
+
+      <div class="quote-card">
+        <blockquote>"Being in a band with your sisters is a gift from heaven. 
+          We fight, we make up, and then we go on stage and create magic. 
+          There's no better feeling."</blockquote>
+        <cite>— The Warning, interviewed by People Magazine (2025)</cite>
+      </div>
+
+      <div class="quote-card">
+        <blockquote>"The Warning is a band on the warpath, spearheading an album 
+          with so much lyrical and musical energy. Their sound has a mix of 
+          well-tuned guitar parts which are electrifying and atmospheric."</blockquote>
+        <cite>— Review of <em>Error</em> (2022)</cite>
+      </div>
+
+      <div class="quote-card">
+        <blockquote>"The band's presence at the Latin Grammy Awards represents 
+          more than just a nomination. It symbolizes the evolving nature of 
+          Latin music, where rock acts like The Warning are helping to reshape 
+          the industry."</blockquote>
+        <cite>— The Warning Pit, on their historic Latin GRAMMY nomination (2024)</cite>
+      </div>
+
+      <div class="quote-card">
+        <blockquote>"That game gave us our first idea of what a rock star was."</blockquote>
+        <cite>— Daniela Villarreal, on learning music through <em>Rock Band</em> (2023)</cite>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ===== ACHIEVEMENTS ===== -->
+  <section class="section" id="achievements">
+    <div class="container text-center">
+      <span class="label">By the Numbers</span>
+      <h2>Milestones &amp; <span class="accent">Achievements</span></h2>
+      <div class="stat-grid" style="margin-top:40px;">
+        <div class="stat-card">
+          <div class="stat-number">4</div>
+          <div class="stat-label">Studio Albums</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">26M+</div>
+          <div class="stat-label">YouTube Views (Enter Sandman)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">2M+</div>
+          <div class="stat-label">Spotify Monthly Listeners</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">1</div>
+          <div class="stat-label">Latin GRAMMY Nomination</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">10K</div>
+          <div class="stat-label">Auditorio Nacional Sold Out ×3</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">#8</div>
+          <div class="stat-label">Billboard Mainstream Rock ("S!CK")</div>
+        </div>
+      </div>
+      <div style="margin-top:32px;">
+        <p style="color:#888; max-width:600px; margin:0 auto;">
+          <strong style="color:#ccc;">Notable tours &amp; support slots:</strong><br>
+          Muse · Foo Fighters · Guns N' Roses · Halestorm · The Pretty Reckless ·
+          Three Days Grace · Halsey · Yungblud (2026) · Stone Temple Pilots · Sammy Hagar
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ===== SOCIAL / FOOTER ===== -->
+  <section class="section section-dark" id="links">
+    <div class="container text-center">
+      <span class="label">Connect</span>
+      <h2>Follow <span class="accent">The Warning</span></h2>
+      <p style="color:#888; margin-bottom:32px;">
+        All links sourced from the open web — the band's official channels.
+      </p>
+      <div class="links-grid">
+        <a href="https://www.thewarningband.com" class="link-btn" target="_blank">🌐 Official Website</a>
+        <a href="https://www.youtube.com/channel/UCeZHVOA5rP9rHoa7zKCx7kQ" class="link-btn" target="_blank">▶ YouTube</a>
+        <a href="https://open.spotify.com/artist/2SmW1lFlBJn4IfBzBZDlSh" class="link-btn" target="_blank">🎧 Spotify</a>
+        <a href="https://www.instagram.com/thewarning/" class="link-btn" target="_blank">📸 Instagram</a>
+        <a href="https://twitter.com/thewarningband" class="link-btn" target="_blank">🐦 X / Twitter</a>
+        <a href="https://www.facebook.com/TheWarningRockBand" class="link-btn" target="_blank">📘 Facebook</a>
+        <a href="https://www.tiktok.com/@thewarning" class="link-btn" target="_blank">🎵 TikTok</a>
+        <a href="https://thewarningtourdb.com" class="link-btn" target="_blank">🎫 Tour Database</a>
+        <a href="https://thewarning.fandom.com" class="link-btn" target="_blank">📚 Fan Wiki</a>
+        <a href="https://www.setlist.fm/setlists/the-warning-3bf78328.html" class="link-btn" target="_blank">📋 Setlist.fm</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>
+        Built from scratch with <span class="footer-heart">♥</span> from internet-sourced research.
+        Not affiliated with the band or its management. All facts sourced from Wikipedia, 
+        MusicBrainz, Genius, and news publications as of May 2026.
+      </p>
+      <p style="margin-top:12px;">
+        <span class="footer-heart">⚠</span> THE WARNING — Unofficial Fan Archive
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>

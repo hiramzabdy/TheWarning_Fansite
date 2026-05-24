@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Daniela",
+    "nickname": "Dany",
+    "role": "Lead Vocals · Guitar · Piano",
+    "initial": "D",
+    "color": "#c62828",
+    "bio": "The eldest sister and frontwoman. Her guitar style is heavily inspired by Matt Bellamy of Muse. She writes much of the band's lyrics and commands the stage with fiery energy. Her voice carries both vulnerability and power, often switching between soaring melodies and gritty rock deliveries in the same breath."
+  },
+  {
+    "name": "Paulina",
+    "nickname": "Pau",
+    "role": "Drums · Vocals · Piano",
+    "initial": "P",
+    "color": "#b71c1c",
+    "bio": "The powerhouse behind the kit. Profiled in Tom Tom Magazine at age 12, she's the band's creative director, co-lead vocalist, and a force of nature. Her drumming combines technical precision with theatrical showmanship, and her vocals add a contrasting harmonizing layer."
+  },
+  {
+    "name": "Alejandra",
+    "nickname": "Ale",
+    "role": "Bass · Backing Vocals · Piano",
+    "initial": "A",
+    "color": "#8e0000",
+    "bio": "The youngest sister anchors the rhythm section with a deep, melodic bass style. She also provides ethereal backing harmonies that round out the band's vocal texture. Her classical piano training gives her basslines a uniquely melodic, almost compositional quality."
+  }
+]

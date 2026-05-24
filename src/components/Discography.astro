@@ -1,0 +1,53 @@
+---
+import AlbumCard from './AlbumCard.astro';
+import discography from '../data/discography.json';
+---
+<section id="discography" class="relative border-t border-white/5 bg-surface-light py-28">
+  <div class="mx-auto max-w-6xl px-6">
+    <span class="section-label section-label-anim">Discography</span>
+    <h2 class="section-label-anim mb-4 font-serif text-3xl leading-tight sm:text-4xl md:text-5xl">
+      Four Albums of <span class="text-crimson-500">Evolution</span>
+    </h2>
+    <p class="section-label-anim mb-16 max-w-lg text-sm leading-relaxed text-text-secondary">
+      From independent releases to major-label rock anthems, every album marks a new chapter.
+    </p>
+
+    <div class="grid gap-8 md:grid-cols-2">
+      {discography.map((album, i) => (
+        <AlbumCard
+          title={album.title}
+          year={album.year}
+          label={album.label}
+          tag={album.tag}
+          tracks={album.tracks}
+          lengths={album.lengths}
+          index={i}
+        />
+      ))}
+    </div>
+
+    <!-- EPs Section -->
+    <div class="reveal mt-20">
+      <h3 class="mb-8 text-center text-sm font-semibold tracking-[0.1em] uppercase text-text-secondary">
+        Extended Plays &amp; Live Releases
+      </h3>
+      <div class="grid gap-6 sm:grid-cols-3">
+        <div class="glass glass-hover rounded-2xl p-8 text-center">
+          <span class="text-xs font-bold tracking-[0.1em] uppercase text-crimson-400">2015</span>
+          <h4 class="mt-2 text-lg font-semibold">Escape the Mind</h4>
+          <p class="mt-1 text-xs text-text-muted">6-track EP · Independent</p>
+        </div>
+        <div class="glass glass-hover rounded-2xl p-8 text-center">
+          <span class="text-xs font-bold tracking-[0.1em] uppercase text-crimson-400">2021</span>
+          <h4 class="mt-2 text-lg font-semibold">Mayday</h4>
+          <p class="mt-1 text-xs text-text-muted">6-track EP · Lava / Republic</p>
+        </div>
+        <div class="glass glass-hover rounded-2xl p-8 text-center">
+          <span class="text-xs font-bold tracking-[0.1em] uppercase text-crimson-400">2025</span>
+          <h4 class="mt-2 text-lg font-semibold">Live from Auditorio Nacional</h4>
+          <p class="mt-1 text-xs text-text-muted">Live Album &amp; Concert Film</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

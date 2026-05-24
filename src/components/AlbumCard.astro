@@ -1,0 +1,48 @@
+---
+export interface Props {
+  title: string;
+  year: number;
+  label: string;
+  tag: string | null;
+  tracks: string[];
+  lengths: string[];
+  index: number;
+}
+
+const { title, year, label, tag, tracks, lengths, index } = Astro.props;
+---
+
+<div class="album-card-anim glass glass-hover rounded-2xl overflow-hidden">
+  <!-- Album color bar -->
+  <div
+    class="h-1 w-full"
+    style={`background: linear-gradient(90deg, #c62828, ${index % 2 === 0 ? '#b71c1c' : '#8e0000'})`}
+  ></div>
+
+  <div class="p-6 sm:p-8">
+    <div class="mb-6 flex items-start justify-between">
+      <div>
+        <span class="text-xs font-bold tracking-[0.1em] uppercase text-crimson-400">{year}</span>
+        <h3 class="mt-1 text-2xl font-semibold">{title}</h3>
+        <p class="text-xs tracking-[0.03em] text-text-muted">{label}</p>
+        {tag && (
+          <span class="mt-3 inline-block rounded bg-crimson-500/15 px-3 py-1 text-[0.65rem] font-bold uppercase tracking-[0.05em] text-crimson-400">
+            {tag}
+          </span>
+        )}
+      </div>
+    </div>
+
+    <ol class="space-y-0.5">
+      {tracks.map((track, i) => (
+        <li class="flex items-center justify-between border-b border-white/[0.03] py-2 text-sm last:border-b-0">
+          <div>
+            <span class="mr-3 font-semibold text-text-muted">{String(i + 1).padStart(2, '0')}</span>
+            <span>{track}</span>
+          </div>
+          <span class="text-xs text-text-muted">{lengths[i]}</span>
+        </li>
+      ))}
+    </ol>
+  </div>
+</div>

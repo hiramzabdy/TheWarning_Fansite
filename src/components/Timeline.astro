@@ -1,0 +1,30 @@
+---
+import timeline from '../data/timeline.json';
+---
+<section id="timeline" class="relative border-t border-white/5 py-28">
+  <div class="mesh-gradient"></div>
+  <div class="relative z-10 mx-auto max-w-3xl px-6">
+    <span class="section-label section-label-anim">History</span>
+    <h2 class="section-label-anim mb-16 font-serif text-3xl leading-tight sm:text-4xl md:text-5xl">
+      Timeline of a <span class="text-crimson-500">Rising Force</span>
+    </h2>
+
+    <div class="relative pl-10">
+      <!-- Vertical line -->
+      <div class="absolute left-[17px] top-2 h-[calc(100%-16px)] w-[2px] bg-gradient-to-b from-crimson-500 to-transparent"></div>
+
+      {timeline.map((item) => (
+        <div class="timeline-item-anim group relative mb-12 last:mb-0">
+          <!-- Dot -->
+          <div class="absolute -left-[30px] top-1.5 h-[14px] w-[14px] rounded-full border-[3px] border-surface bg-crimson-500 shadow-[0_0_0_2px_#c62828] transition-all duration-300 group-hover:shadow-[0_0_0_4px_#c62828]"></div>
+
+          <span class="mb-1 block text-xs font-bold tracking-[0.1em] uppercase text-crimson-400">
+            {item.year}
+          </span>
+          <h3 class="mb-1.5 text-lg font-semibold">{item.title}</h3>
+          <p class="text-sm leading-relaxed text-text-secondary">{item.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
