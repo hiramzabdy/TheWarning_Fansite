@@ -1,4 +1,10 @@
 ---
+import { Image } from 'astro:assets';
+import coverKeepMeFed from '../assets/album-keep-me-fed.jpg';
+import coverError from '../assets/album-error.jpg';
+import coverQotMS from '../assets/album-queen-of-the-murder-scene.jpg';
+import coverXXI from '../assets/album-xxi-century-blood.jpg';
+
 export interface Props {
   title: string;
   year: number;
@@ -10,18 +16,37 @@ export interface Props {
 }
 
 const { title, year, label, tag, tracks, lengths, index } = Astro.props;
+
+const covers: Record<string, ImageMetadata> = {
+  'Keep Me Fed': coverKeepMeFed,
+  'ERROR': coverError,
+  'Queen of the Murder Scene': coverQotMS,
+  'XXI Century Blood': coverXXI,
+};
+
+const cover = covers[title];
 ---
 
 <div class="album-card-anim glass glass-hover rounded-2xl overflow-hidden">
-  <!-- Album color bar -->
-  <div
-    class="h-1 w-full"
-    style={`background: linear-gradient(90deg, #c62828, ${index % 2 === 0 ? '#b71c1c' : '#8e0000'})`}
-  ></div>
+  <div class="flex flex-col sm:flex-row">
+    <!-- Album cover -->
+    {
+      cover && (
+        <div class="shrink-0 sm:w-48">
+          <Image
+            src={cover}
+            alt={`${title} album cover`}
+            class="h-48 w-full object-cover sm:h-full sm:w-48"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      )
+    }
 
-  <div class="p-6 sm:p-8">
-    <div class="mb-6 flex items-start justify-between">
-      <div>
+    <!-- Tracklist + info -->
+    <div class="flex-1 p-6 sm:p-8">
+      <div class="mb-6">
         <span class="text-xs font-bold tracking-[0.1em] uppercase text-crimson-400">{year}</span>
         <h3 class="mt-1 text-2xl font-semibold">{title}</h3>
         <p class="text-xs tracking-[0.03em] text-text-muted">{label}</p>
@@ -31,18 +56,18 @@ const { title, year, label, tag, tracks, lengths, index } = Astro.props;
           </span>
         )}
       </div>
-    </div>
 
-    <ol class="space-y-0.5">
-      {tracks.map((track, i) => (
-        <li class="flex items-center justify-between border-b border-white/[0.03] py-2 text-sm last:border-b-0">
-          <div>
-            <span class="mr-3 font-semibold text-text-muted">{String(i + 1).padStart(2, '0')}</span>
-            <span>{track}</span>
-          </div>
-          <span class="text-xs text-text-muted">{lengths[i]}</span>
-        </li>
-      ))}
-    </ol>
+      <ol class="space-y-0.5">
+        {tracks.map((track, i) => (
+          <li class="flex items-center justify-between border-b border-white/[0.03] py-2 text-sm last:border-b-0">
+            <div>
+              <span class="mr-3 font-semibold text-text-muted">{String(i + 1).padStart(2, '0')}</span>
+              <span>{track}</span>
+            </div>
+            <span class="text-xs text-text-muted">{lengths[i]}</span>
+          </li>
+        ))}
+      </ol>
+    </div>
   </div>
 </div>

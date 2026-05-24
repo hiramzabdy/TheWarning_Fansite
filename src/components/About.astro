@@ -1,3 +1,7 @@
+---
+import { Image } from 'astro:assets';
+import bandPhoto from '../assets/band-group.jpg';
+---
 <section class="relative overflow-hidden border-t border-white/5 py-28" id="about">
   <div class="mesh-gradient"></div>
   <div class="relative z-10 mx-auto max-w-6xl px-6">
@@ -5,6 +9,18 @@
     <h2 class="section-label-anim mb-12 font-serif text-3xl leading-tight sm:text-4xl md:text-5xl">
       From <span class="text-crimson-500">Monterrey</span> to the World
     </h2>
+
+    <!-- Band photo -->
+    <div class="reveal mb-16 overflow-hidden rounded-2xl">
+      <Image
+        src={bandPhoto}
+        alt="The Warning — the Villarreal Vélez sisters"
+        class="h-64 w-full object-cover object-top sm:h-80 md:h-96"
+        loading="lazy"
+        decoding="async"
+        widths={[640, 1024, 1600]}
+      />
+    </div>
 
     <div class="reveal grid gap-12 md:grid-cols-2">
       <div>
