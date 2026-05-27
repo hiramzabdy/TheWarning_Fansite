@@ -6,5 +6,10 @@ export default defineConfig({
   output: 'static',
   vite: {
     plugins: [tailwindcss()],
+    server: {
+      watch: {
+        ignored: ['**/node_modules/**'],
+      },
+    },
   },
 });
